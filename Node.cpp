@@ -13,3 +13,10 @@ int Node::get_bias() {
 int Node::get_weight() {
     return this->weight;
 }
+
+Input_Node::() {
+	//Inputs don't have weights or biases
+	this->weight = 0;
+	this->bias = 0;
+
+}

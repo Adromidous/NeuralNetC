@@ -20,12 +20,26 @@ class Node {
 
 class Input_Node : public Node {
     
-    public: 
+    public:
+	Input_Node(); //Going to use this function to set weight and bias to 0.
+ 
 	vector<Node> output_nodes;
 	int set_output(vector<Node> output);
+	int insert_output(Node output_node);
+	
+};
 
+class Output_Node : public Node {
+    
+    public:
+	Output_Node(); //Going to use this function to set weight and bias to 0.
 
+	vector<Node> input_nodes;
+	int set_input(vector<Node> output);
+	int insert_input(Node output_node);
+	
+};
 
-}; 
+ 
 
 #endif
