@@ -46,6 +46,14 @@ int Node::calculate_value() {
 
 }
 
+int Node::RELU(int value) {
+	if (value > 0) {
+		return value;
+	}
+
+	return 0;
+}
+
 Input_Node::Input_Node(int value=0) {
 	this->value = value;
 }
@@ -53,6 +61,10 @@ Input_Node::Input_Node(int value=0) {
 Input_Node::calculate_value() { //Override
 	return -1; //Input node doesn't need values calculated. 
 }
+
+Input_Node::RELU(int value) {
+	return value;
+} 
 
 Output_Node::Output_Node(int value) {
 	this->weight = weight;

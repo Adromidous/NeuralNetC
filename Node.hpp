@@ -19,6 +19,7 @@ class Node {
         int get_value();
         void set_value(int value=0);
         int calculate_value();
+        int RELU(int value);
 };
 
 class Input_Node : public Node {
