@@ -2,11 +2,10 @@
 #include "Node.hpp"
 
 int main() {
-	std::cout << "Hello World!" << std::endl;
-	Node first = Node(5, 3);
+	std::cout << "Creating Input Node" << std::endl;
+	Input_Node i1 = Input_Node(3);
 
-	std::cout << first.get_weight() << std::endl;
-	std::cout << first.get_bias() << std::endl;
+	std::cout << "INPUT NODE VALUE: " << i1.get_value() << std::endl;
 
 	return 0;
 }
