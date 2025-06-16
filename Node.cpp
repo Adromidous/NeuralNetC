@@ -1,7 +1,7 @@
 #include "Node.hpp"
 
 
-Node::Node(int weight, int bias) {
+Node::Node(int weight=0, int bias=0) {
     this->weight = weight;
     this->bias = bias;
 }
@@ -14,9 +14,46 @@ int Node::get_weight() {
     return this->weight;
 }
 
-Input_Node::() {
-	//Inputs don't have weights or biases
-	this->weight = 0;
-	this->bias = 0;
+void Node::set_weight(int* weight) {
+	this->weight = weight;
+}
 
+void Node::set_bias(int* bias) {
+	this->bias = bias;
+}
+
+int Node::get_value() {
+	return this->value;
+}
+
+void Node::set_value(int value=0) {
+	this->value = value;
+}
+
+int Node::calculate_value() {
+
+	int res = 0;
+
+	for (int i = 0; i < this->input_nodes.size(); i++) {
+		Node temp = this->input_nodes[i];
+		int* temp_bias = this->bias;
+		int* temp_weight = this->weight;
+
+		res = res + temp_bias[i] + (temp.value * temp_weight[i]);
+	}
+
+	return res;
+
+}
+
+Input_Node::Input_Node(int value=0) {
+	this->value = value;
+}
+
+Input_Node::calculate_value() { //Override
+	return -1; //Input node doesn't need values calculated. 
+}
+
+Output_Node::Output_Node(int value) {
+	this->weight = weight;
 }
