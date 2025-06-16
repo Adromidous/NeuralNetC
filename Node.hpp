@@ -26,7 +26,7 @@ class Input_Node : public Node {
 
 class Output_Node : public Node {
     public:
-	    Output_Node(int value); //Going to use this function to set weight and bias to 0.
+	    Output_Node(int value=0, int weight=0, int bias=0);
 };
 
  

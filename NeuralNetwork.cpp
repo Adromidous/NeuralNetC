@@ -1,4 +1,5 @@
 #include "NeuralNetwork.hpp"
+#include <iostream>
 
 NeuralNetwork::NeuralNetwork(int num_inputs, int num_hidden_nodes, int num_outputs, Input_Node* input, Node* hidden_nodes, Output_Node* output) {
     this->num_inputs = num_inputs;
@@ -28,4 +29,38 @@ int NeuralNetwork::get_num_hidden_nodes() {
 
 int NeuralNetwork::get_num_outputs() {
     return this->num_outputs;
+}
+
+int NeuralNetwork::get_output_value() {
+    return (this->output)->get_value();
+}
+
+void NeuralNetwork::forward_pass() {
+
+    int input_value = (this->input)->get_value();
+
+
+    //TODO: Make this into one loop
+
+    //Pass through hidden layer
+    for (int i = 0; i < this->get_num_hidden_nodes(); i++) {
+        Node* curr_node = &(this->hidden_layer[i]); //Get the current node in the hidden layer
+
+        int new_value = this->RELU(curr_node->get_bias() + curr_node->get_weight() * input_value);
+        curr_node->set_value(new_value);
+    }
+
+    //Pass through output layer
+    int output_value = 0;
+    int output_weight = (this->output)->get_weight();
+    int output_bias = (this->output)->get_bias();
+
+
+    for (int i = 0; i < this->get_num_hidden_nodes(); i++) {
+        Node* curr_hidden = &(this->hidden_layer[i]);
+        output_value = output_value + this->RELU(curr_hidden->get_value() * output_weight + output_bias);
+    }
+
+    (this->output)->set_value(output_value);
+
 }

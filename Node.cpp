@@ -34,6 +34,8 @@ Input_Node::Input_Node(int value) {
 	this->value = value;
 }
 
-Output_Node::Output_Node(int value) {
+Output_Node::Output_Node(int value, int weight, int bias) {
+	this->weight = weight;
+	this->bias = bias;
 	this->value = value;
 }
