@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Node.hpp"
+#include "NeuralNetwork.hpp"
 
 int main() {
 	std::cout << "Creating Input Node" << std::endl;
