@@ -39,24 +39,21 @@ void NeuralNetwork::forward_pass() {
 
     int input_value = (this->input)->get_value();
 
-
-    //TODO: Make this into one loop
-
-    //Pass through hidden layer
-    for (int i = 0; i < this->get_num_hidden_nodes(); i++) {
-        Node* curr_node = &(this->hidden_layer[i]); //Get the current node in the hidden layer
-
-        int new_value = this->RELU(curr_node->get_bias() + curr_node->get_weight() * input_value);
-        curr_node->set_value(new_value);
-    }
-
-    //Pass through output layer
     int output_value = 0;
     int output_weight = (this->output)->get_weight();
     int output_bias = (this->output)->get_bias();
 
+    //Pass through hidden layer
 
+    //1. Pass through hidden layer
+    //2. Pass to output layer
     for (int i = 0; i < this->get_num_hidden_nodes(); i++) {
+        //Calculate hidden layer
+        Node* curr_node = &(this->hidden_layer[i]);
+        int new_value = this->RELU(curr_node->get_bias() + curr_node->get_weight() * input_value);
+        curr_node->set_value(new_value);
+
+        //Calculate output layer
         Node* curr_hidden = &(this->hidden_layer[i]);
         output_value = output_value + this->RELU(curr_hidden->get_value() * output_weight + output_bias);
     }
