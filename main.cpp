@@ -5,22 +5,21 @@
 int main() {
 	const int NUM_INPUT = 1;
 	const int NUM_OUTPUT = 1;
+	const int NUM_LAYERS = 2;
 	const int NUM_HIDDEN_NODES = 3;
 
 	Input_Node* input_node = new Input_Node(5);
 	Output_Node* output_node = new Output_Node(0, 1, 1);
 
-	Node* hidden_layer = new Node[NUM_HIDDEN_NODES];
+	Node* hidden_layer = new Node[NUM_LAYERS * NUM_HIDDEN_NODES];
 
-	for (int i = 1; i < NUM_HIDDEN_NODES + 1; i++) {
-		hidden_layer[i-1] = Node(i, i); //Weight: i, Bias: i
+	for (int j = 0; j < NUM_LAYERS; j++) {
+		for (int i = 0; i < NUM_HIDDEN_NODES; i++) {
+			hidden_layer[i * NUM_HIDDEN_NODES + j] = Node(i, j);
+		}
 	}
 
-	std::cout << "---CREATING NEURAL NETWORK---" << std::endl;
-
-	NeuralNetwork nn = NeuralNetwork(NUM_INPUT, NUM_HIDDEN_NODES, NUM_OUTPUT, input_node, hidden_layer, output_node);
-
-	std::cout << "---NEURAL NETWORK CREATED---" << std::endl;
+	NeuralNetwork nn = NeuralNetwork(NUM_INPUT, NUM_HIDDEN_NODES, NUM_LAYERS, NUM_OUTPUT, input_node, hidden_layer, output_node);
 
 	nn.forward_pass();
 

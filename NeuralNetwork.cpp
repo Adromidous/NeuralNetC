@@ -1,8 +1,9 @@
 #include "NeuralNetwork.hpp"
 #include <iostream>
 
-NeuralNetwork::NeuralNetwork(int num_inputs, int num_hidden_nodes, int num_outputs, Input_Node* input, Node* hidden_nodes, Output_Node* output) {
+NeuralNetwork::NeuralNetwork(int num_inputs, int num_hidden_nodes, int num_hidden_layers, int num_outputs, Input_Node* input, Node* hidden_nodes, Output_Node* output) {
     this->num_inputs = num_inputs;
+    this->num_hidden_layers = num_hidden_layers;
     this->num_hidden_nodes = num_hidden_nodes;
     this->num_outputs = num_outputs;
     //We'll need these variables above when we do a forward pass
@@ -25,6 +26,10 @@ int NeuralNetwork::get_num_inputs() {
 
 int NeuralNetwork::get_num_hidden_nodes() {
     return this->num_hidden_nodes;
+}
+
+int NeuralNetwork::get_num_hidden_layers() {
+    return this->num_hidden_layers;
 }
 
 int NeuralNetwork::get_num_outputs() {
